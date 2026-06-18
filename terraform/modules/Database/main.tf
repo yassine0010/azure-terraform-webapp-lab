@@ -8,22 +8,28 @@ resource "azurerm_mysql_flexible_server" "main" {
   administrator_password = var.admin_password
 
   # Tier & Size
-  sku_name = "B_Standard_B1ms" # Burstable B1ms
+  sku_name = "B_Standard_B1ms"
 
   # Storage
   storage {
     size_gb           = 20
-    auto_grow_enabled = true # grows automatically when full
+    auto_grow_enabled = true
   }
 
   # Version
   version = "8.0.21"
 
+  # NO public access — private only
+  public_network_access_enabled = false
 
   # Backup
   backup_retention_days        = 7
   geo_redundant_backup_enabled = false
 
+  # High Availability — disabled for learning/cost control
+  high_availability {
+    mode = "Disabled"
+  }
 
   # Connect to your VNet
   #connect to your DNS Zone for name resolution
@@ -38,7 +44,7 @@ resource "azurerm_mysql_flexible_database" "main" {
   name                = var.db_name
   resource_group_name = var.rg_name
   server_name         = azurerm_mysql_flexible_server.main.name
-  charset             = "utf8mb4" # supports all characters + emojis
+  charset             = "utf8mb4"
   collation           = "utf8mb4_unicode_ci"
 }
 
