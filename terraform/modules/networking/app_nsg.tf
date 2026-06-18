@@ -23,10 +23,9 @@ resource "azurerm_network_security_rule" "allow_ssh" {
   direction = "Inbound"
   access    = "Allow"
   protocol  = "Tcp"
-
+  source_port_range          = "*"    
   source_address_prefix  = "internet"
   destination_port_range = "22"
-
   resource_group_name         = var.rg_name
   network_security_group_name = azurerm_network_security_group.app_nsg.name
 }

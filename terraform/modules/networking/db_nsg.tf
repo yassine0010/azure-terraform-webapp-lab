@@ -9,7 +9,7 @@ resource "azurerm_network_security_rule" "allow_mysql" {
   direction = "Inbound"
   access    = "Allow"
   protocol  = "Tcp"
-
+  source_port_range          = "*"
   source_address_prefix  = "10.0.1.0/24"
   destination_port_range = "3306"
 

@@ -12,7 +12,8 @@ resource "azurerm_network_security_rule" "allow_http" {
   direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
-  source_address_prefix       = "Internet"  
+  source_address_prefix       = "Internet" 
+  source_port_range          = "*"  
   destination_port_range      = "80"
   destination_address_prefix  = "*"
   resource_group_name         = var.rg_name
@@ -28,6 +29,7 @@ resource "azurerm_network_security_rule" "allow_gateway_manager" {
   access                      = "Allow"
   protocol                    = "Tcp"
   source_address_prefix       = "GatewayManager"
+  source_port_range          = "*"  
   destination_port_range      = "65200-65535"
   destination_address_prefix  = "*"
   resource_group_name         = var.rg_name
@@ -42,6 +44,7 @@ resource "azurerm_network_security_rule" "allow_azure_lb" {
   access                      = "Allow"
   protocol                    = "*"
   source_address_prefix       = "AzureLoadBalancer"
+  source_port_range          = "*"
   destination_port_range      = "*"
   destination_address_prefix  = "*"
   resource_group_name         = var.rg_name

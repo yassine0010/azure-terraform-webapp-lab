@@ -32,6 +32,12 @@ resource "azurerm_application_gateway" "main" {
     subnet_id = azurerm_subnet.appgw.id
   }
 
+
+  ssl_policy {
+  policy_type = "Predefined"
+  policy_name = "AppGwSslPolicy20220101"  # latest TLS 1.2/1.3 policy
+  }
+
   frontend_ip_configuration {
     name                 = "frontend"
     public_ip_address_id = azurerm_public_ip.appgw.id
