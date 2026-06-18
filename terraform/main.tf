@@ -31,6 +31,7 @@ module "networking" {
 
   # App Gateway
   app_gateway_name = var.app_gateway_name
+  depends_on = [azurerm_resource_group.resource_group_name]
 }
 
 # ─────────────────────────────────────────
@@ -38,6 +39,7 @@ module "networking" {
 # ─────────────────────────────────────────
 module "mysql" {
   source = "./modules/Database"
+  depends_on = [azurerm_resource_group.resource_group_name]
 
   # Basic
   rg_name  = var.rg_name
@@ -59,7 +61,7 @@ module "mysql" {
 # ─────────────────────────────────────────
 module "compute" {
   source = "./modules/Compute"
-
+  depends_on = [azurerm_resource_group.resource_group_name]
   # Basic
   rg_name   = var.rg_name
   location  = var.location
