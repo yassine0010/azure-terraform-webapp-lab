@@ -4,7 +4,7 @@ This project provisions and runs a lightweight Node.js web application on Azure 
 
 ## Architecture
 
-![Project architecture](./eraser-export-export-05-06-2026-21_37_31/diagram-export-05-06-2026-21_37_31.png)
+![Project architecture](./eraser-export-export-18-06-2026-23_39_28/diagram-export-18-06-2026-23_39_28.png)
 
 ```text
 Internet
@@ -17,7 +17,6 @@ Internet
 
 ```text
 .
-├── Dockerfile
 ├── index.js
 ├── package.json
 ├── package-lock.json
@@ -91,20 +90,6 @@ The application starts on:
 
 ```text
 http://localhost:8080
-```
-
-## Docker
-
-Build the image:
-
-```bash
-docker build -t lightweight-webapp .
-```
-
-Run the container:
-
-```bash
-docker run -p 8080:8080 lightweight-webapp
 ```
 
 ## Terraform Overview

@@ -42,27 +42,12 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   }
 
   # Startup script — installs Node.js and starts your app when VM boots
-  custom_data = base64encode(<<-EOF
-    #!/bin/bash
-    # Update system
-    apt-get update -y
-
-    # Install Node.js 18
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-    apt-get install -y nodejs
-
-    # Install PM2 — keeps your Node app running forever
-    npm install -g pm2
-
-    # Your app deployment happens here
-    # Example: pull from git, install deps, start app
-    # git clone <your-repo> /app
-    # cd /app && npm install
-    # pm2 start app.js --name "myapp"
-    # pm2 startup
-    # pm2 save
-  EOF
-  )
+  custom_data = base64encode(templatefile("${path.module}/startup.sh", {
+  db_host     = var.db_host
+  db_user     = var.db_user
+  db_password = var.db_password
+  db_name     = var.db_name
+  }))
 
   # Health check — App Gateway uses this to know if VM is healthy
   health_probe_id = var.health_probe_id
