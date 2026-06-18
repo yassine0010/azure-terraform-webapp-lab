@@ -4,9 +4,7 @@ This project provisions and runs a lightweight Node.js web application on Azure 
 
 ## Architecture
 
-![Project architecture](./erase-export.png)
-
-If the exported architecture image has a different filename, update the image path above to match the file in this repository.
+![Project architecture](./eraser-export-export-05-06-2026-21_37_31/diagram-export-05-06-2026-21_37_31.png)
 
 ```text
 Internet
