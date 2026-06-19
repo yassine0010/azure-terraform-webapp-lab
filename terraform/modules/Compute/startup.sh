@@ -1,13 +1,15 @@
 #!/bin/bash
 apt-get update -y
 curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-apt-get install -y nodejs git
+apt-get install -y nodejs git openssl netcat
 npm install -g pm2
 
 mkdir -p /app
-# Combined CA bundle: covers both old (SHA-1) and current (SHA-256) Azure MySQL roots
-curl -sS https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem -o /app/azure-mysql-ca-bundle.pem
-curl -sS https://dl.cacerts.digicert.com/DigiCertGlobalRootG2.crt.pem >> /app/azure-mysql-ca-bundle.pem
+
+# Extract CA bundle directly from the MySQL server (no external download needed)
+openssl s_client -connect ${db_host}:3306 -starttls mysql -showcerts </dev/null 2>/dev/null \
+  | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' \
+  > /app/azure-mysql-ca-bundle.pem
 
 cat > /etc/environment << 'ENVFILE'
 DB_HOST=${db_host}
@@ -18,6 +20,7 @@ DB_NAME=${db_name}
 DB_SSL=true
 PORT=8080
 ENVFILE
+
 export DB_HOST="${db_host}"
 export DB_PORT="3306"
 export DB_USER="${db_user}"

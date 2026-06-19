@@ -27,7 +27,7 @@ async function initDatabase() {
     connectionLimit: 5,
     enableKeepAlive: true,
     ssl: process.env.DB_SSL === 'false' ? undefined : {
-      ca: fs.readFileSync('/app/azure-mysql-ca-bundle.pem'),
+      ca: fs.readFileSync('/app/repo/azure-mysql-ca-bundle.pem'),
       rejectUnauthorized: true
     }
   });

@@ -6,3 +6,10 @@ terraform.tfvars
 *.tfstate
 *.tfstate.backup
 .terraform/
+
+# Certs
+*.pem
+*.crt
+
+# Node
+node_modules/

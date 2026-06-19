@@ -57,8 +57,9 @@ resource "azurerm_application_gateway" "main" {
     protocol              = "Http"
     port                  = 8080
     cookie_based_affinity = "Disabled"
+    probe_name            = "health-probe"    # ← add this line
+    request_timeout       = 30               # ← add this line
   }
-
   http_listener {
     name                           = "listener"
     frontend_ip_configuration_name = "frontend"
