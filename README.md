@@ -4,7 +4,7 @@ This project provisions and runs a lightweight Node.js web application on Azure 
 
 ## Architecture
 
-![Project architecture](./eraser-export-export-18-06-2026-23_39_28/diagram-export-18-06-2026-23_39_28.png)
+![Project architecture](./eraser-export-export-19-06-2026-15_28_39/diagram-export-19-06-2026-15_28_39.png)
 
 ```text
 Internet
