@@ -20,16 +20,14 @@ resource "azurerm_mysql_flexible_server" "main" {
   version = "8.0.21"
 
   # NO public access — private only
-  public_network_access_enabled = false
+
 
   # Backup
   backup_retention_days        = 7
   geo_redundant_backup_enabled = false
 
   # High Availability — disabled for learning/cost control
-  high_availability {
-    mode = "Disabled"
-  }
+
 
   # Connect to your VNet
   #connect to your DNS Zone for name resolution
