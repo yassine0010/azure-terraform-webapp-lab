@@ -2,7 +2,7 @@ resource "azurerm_mysql_flexible_server" "main" {
   name                = var.server_name
   location            = var.location
   resource_group_name = var.rg_name
-
+  zone                = "3"
   # Authentication
   administrator_login    = var.admin_username
   administrator_password = var.admin_password

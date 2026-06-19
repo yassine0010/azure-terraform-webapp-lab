@@ -12,6 +12,7 @@ resource "azurerm_network_security_rule" "allow_mysql" {
   source_port_range          = "*"
   source_address_prefix  = "10.0.1.0/24"
   destination_port_range = "3306"
+  destination_address_prefix  = "*"
 
   resource_group_name         = var.rg_name
   network_security_group_name = azurerm_network_security_group.db_nsg.name
